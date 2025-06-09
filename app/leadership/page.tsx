@@ -4,6 +4,8 @@ import Header from "@/components/header"
 import { Card, CardContent } from "@/components/ui/card"
 
 export default function LeadershipPage() {
+  const breadcrumbs = [{ name: "Leadership" }]
+
   const leaders = [
     {
       name: "Rajesh Mehra",
@@ -44,17 +46,22 @@ export default function LeadershipPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-white dark:bg-hoa-charcoal">
+    <div className="min-h-screen bg-white dark:bg-hoa-charcoal transition-colors duration-400">
       <Header />
-      <PageBanner title="Leadership Team" subtitle="The visionaries guiding our journey" />
+      <PageBanner
+        title="Leadership Team"
+        subtitle="The visionaries guiding our journey towards excellence"
+        breadcrumbs={breadcrumbs}
+      />
 
-      <main className="py-16 px-6">
+      <main className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-hoa-charcoal dark:text-white mb-6 font-serif">
-              Executive Leadership
+          <div className="text-center mb-16 animate-fade-in-up">
+            <h2 className="text-4xl font-bold text-hoa-charcoal dark:text-white mb-6 font-serif">
+              Executive <span className="text-hoa-gold">Leadership</span>
             </h2>
-            <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
+            <div className="w-24 h-1 bg-hoa-gold mx-auto mb-8" />
+            <p className="text-xl text-gray-700 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
               Our leadership team brings together decades of experience, visionary thinking, and unwavering commitment
               to excellence across diverse industries.
             </p>
@@ -64,21 +71,23 @@ export default function LeadershipPage() {
             {leaders.map((leader, index) => (
               <Card
                 key={index}
-                className="group hover:shadow-xl transition-all duration-300 border-0 bg-white dark:bg-gray-800/30"
+                className={`group hover:shadow-2xl transition-all duration-500 border-0 bg-white dark:bg-gray-800/30 hover:-translate-y-2 animate-scale-in`}
+                style={{ animationDelay: `${index * 100}ms` }}
               >
                 <CardContent className="p-8 text-center">
                   <div className="relative mb-6">
+                    <div className="absolute inset-0 bg-gradient-to-br from-hoa-gold/20 to-hoa-gold/5 rounded-full scale-110 group-hover:scale-125 transition-transform duration-500" />
                     <img
                       src={leader.image || "/placeholder.svg"}
                       alt={leader.name}
-                      className="w-32 h-32 rounded-full mx-auto object-cover border-4 border-hoa-gold/20 group-hover:border-hoa-gold transition-colors duration-300"
+                      className="relative w-32 h-32 rounded-full mx-auto object-cover border-4 border-hoa-gold/30 group-hover:border-hoa-gold transition-all duration-500 group-hover:scale-105"
                     />
                   </div>
-                  <h3 className="text-2xl font-bold text-hoa-charcoal dark:text-white mb-2 font-serif">
+                  <h3 className="text-2xl font-bold text-hoa-charcoal dark:text-white mb-2 font-serif group-hover:text-hoa-gold transition-colors duration-300">
                     {leader.name}
                   </h3>
                   <p className="text-hoa-gold font-semibold text-lg mb-4">{leader.title}</p>
-                  <p className="text-gray-600 dark:text-gray-300">{leader.bio}</p>
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{leader.bio}</p>
                 </CardContent>
               </Card>
             ))}
