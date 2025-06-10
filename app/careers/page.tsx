@@ -27,28 +27,28 @@ export default function CareersPage() {
       title: "Find Your Calling",
       description: "Explore opportunities that align with your passion and skills across our diverse portfolio.",
       icon: "🔍",
-      color: "from-blue-500 to-cyan-500",
+      color: "from-hoa-gold to-amber-500",
     },
     {
       phase: "Connect",
       title: "Join the Conversation",
       description: "Engage with our talent team and learn about our culture, values, and growth opportunities.",
       icon: "🤝",
-      color: "from-green-500 to-emerald-500",
+      color: "from-hoa-gold/90 to-amber-600",
     },
     {
       phase: "Grow",
       title: "Evolve with Purpose",
       description: "Develop your skills, lead meaningful projects, and make a lasting impact on communities worldwide.",
       icon: "🚀",
-      color: "from-purple-500 to-violet-500",
+      color: "from-hoa-rose to-hoa-rose/70",
     },
     {
       phase: "Lead",
       title: "Shape the Future",
       description: "Take on leadership roles and drive innovation that creates positive change across industries.",
       icon: "👑",
-      color: "from-orange-500 to-red-500",
+      color: "from-hoa-charcoal to-gray-700",
     },
   ]
 
@@ -394,7 +394,17 @@ export default function CareersPage() {
             {benefits.map((benefit, index) => (
               <div key={benefit.category} className={`animate-fade-in-up animation-delay-${(index + 1) * 200}`}>
                 <div className="bg-white dark:bg-hoa-charcoal/80 p-6 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 h-full">
-                  <div className="w-12 h-12 bg-hoa-gold rounded-full flex items-center justify-center mb-6">
+                  <div
+                    className={`w-12 h-12 ${
+                      benefit.category === "Financial Wellness"
+                        ? "bg-hoa-gold"
+                        : benefit.category === "Work-Life Balance"
+                          ? "bg-hoa-rose"
+                          : benefit.category === "Growth & Development"
+                            ? "bg-amber-600"
+                            : "bg-hoa-charcoal"
+                    } rounded-full flex items-center justify-center mb-6`}
+                  >
                     <benefit.icon className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="text-xl font-serif font-bold text-hoa-charcoal dark:text-white mb-4">
