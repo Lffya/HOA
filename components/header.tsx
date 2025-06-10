@@ -17,20 +17,13 @@ export default function Header() {
   const navItems = [
     {
       name: "About Us",
-      href: "/about-us",
+      href: "/about",
       subItems: [
-        { name: "Our Story", href: "/about-us/story" },
-        { name: "Vision & Mission", href: "/about-us/vision" },
-        { name: "Our Values", href: "/about-us/values" },
-      ],
-    },
-    {
-      name: "Leadership",
-      href: "/leadership",
-      subItems: [
-        { name: "Executive Team", href: "/leadership/executive-team" },
-        { name: "Board of Directors", href: "/leadership/board" },
-        { name: "Management", href: "/leadership/management" },
+        { name: "Our Story", href: "/about/our-story" },
+        { name: "Corporate Governance", href: "/about/governance" },
+        { name: "Leadership", href: "/about/leadership" },
+        { name: "Values & Culture", href: "/about/values-culture" },
+        { name: "CSR Initiatives", href: "/about/csr" },
       ],
     },
     {
@@ -40,15 +33,25 @@ export default function Header() {
         { name: "Real Estate", href: "/businesses/real-estate" },
         { name: "Manufacturing", href: "/businesses/manufacturing" },
         { name: "Technology", href: "/businesses/technology" },
+        { name: "Investment", href: "/businesses/investment" },
       ],
     },
     {
-      name: "CSR",
-      href: "/csr",
+      name: "Innovation",
+      href: "/innovation",
       subItems: [
-        { name: "Initiatives", href: "/csr/initiatives" },
-        { name: "Impact", href: "/csr/impact" },
-        { name: "Sustainability", href: "/csr/sustainability" },
+        { name: "Research & Development", href: "/innovation/research" },
+        { name: "Digital Transformation", href: "/innovation/digital" },
+        { name: "Sustainability", href: "/innovation/sustainability" },
+      ],
+    },
+    {
+      name: "Investors",
+      href: "/investors",
+      subItems: [
+        { name: "Financial Reports", href: "/investors/reports" },
+        { name: "Investor Relations", href: "/investors/relations" },
+        { name: "Corporate News", href: "/investors/news" },
       ],
     },
     {
@@ -64,17 +67,11 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true)
-      } else {
-        setIsScrolled(false)
-      }
+      setIsScrolled(window.scrollY > 20)
     }
 
     window.addEventListener("scroll", handleScroll)
-    return () => {
-      window.removeEventListener("scroll", handleScroll)
-    }
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   const handleMouseEnter = (itemName: string) => {
@@ -101,17 +98,17 @@ export default function Header() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out",
         isScrolled
-          ? "bg-white/95 dark:bg-hoa-charcoal/95 backdrop-blur-md shadow-lg py-3"
+          ? "bg-white/95 dark:bg-hoa-charcoal/95 backdrop-blur-md shadow-lg py-2"
           : "bg-transparent backdrop-blur-sm py-4",
       )}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link
               href="/"
-              className="text-2xl font-bold text-hoa-gold font-serif hover:scale-105 transition-transform duration-300"
+              className="text-xl sm:text-2xl font-bold text-hoa-gold font-serif hover:scale-105 transition-transform duration-300"
             >
               HOUSE OF AMARAA
             </Link>
@@ -129,7 +126,7 @@ export default function Header() {
                 <Link
                   href={item.href}
                   className={cn(
-                    "flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ease-out",
+                    "flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ease-in-out",
                     "text-hoa-charcoal dark:text-white hover:text-hoa-gold dark:hover:text-hoa-gold",
                     "hover:bg-hoa-gold/10 dark:hover:bg-hoa-gold/10",
                     pathname.startsWith(item.href) && "text-hoa-gold bg-hoa-gold/10",
@@ -138,7 +135,7 @@ export default function Header() {
                   {item.name}
                   <ChevronDown
                     className={cn(
-                      "ml-1 h-4 w-4 transition-transform duration-300",
+                      "ml-1 h-4 w-4 transition-transform duration-300 ease-in-out",
                       activeDropdown === item.name && "rotate-180",
                     )}
                   />
@@ -147,7 +144,7 @@ export default function Header() {
                 {/* Dropdown Menu */}
                 <div
                   className={cn(
-                    "absolute top-full left-0 mt-2 w-56 origin-top-left transition-all duration-300 ease-out",
+                    "absolute top-full left-0 mt-2 w-64 origin-top-left transition-all duration-300 ease-in-out",
                     activeDropdown === item.name
                       ? "opacity-100 scale-100 translate-y-0 pointer-events-auto"
                       : "opacity-0 scale-95 -translate-y-2 pointer-events-none",
@@ -185,7 +182,9 @@ export default function Header() {
             <div className="lg:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-hoa-charcoal dark:text-white hover:text-hoa-gold dark:hover:text-hoa-gold transition-colors duration-300"
+                className="text-hoa-charcoal dark:text-white hover:text-hoa-gold dark:hover:text-hoa-gold transition-colors duration-300 p-2 rounded-md touch-target"
+                aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+                aria-expanded={isMenuOpen}
               >
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
@@ -197,31 +196,31 @@ export default function Header() {
         <div
           className={cn(
             "lg:hidden overflow-hidden transition-all duration-500 ease-out",
-            isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0",
+            isMenuOpen ? "max-h-[80vh] opacity-100 overflow-y-auto" : "max-h-0 opacity-0",
           )}
         >
           <div className="py-4 border-t border-gray-200 dark:border-gray-700">
-            <nav className="space-y-2">
+            <nav className="space-y-4">
               {navItems.map((item) => (
-                <div key={item.name} className="space-y-1">
+                <div key={item.name} className="space-y-2">
                   <Link
                     href={item.href}
                     className={cn(
-                      "block px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300",
+                      "block px-4 py-3 rounded-lg text-base font-medium transition-all duration-300",
                       "text-hoa-charcoal dark:text-white hover:text-hoa-gold dark:hover:text-hoa-gold",
-                      "hover:bg-hoa-gold/10 dark:hover:bg-hoa-gold/10",
+                      "hover:bg-hoa-gold/10 dark:hover:bg-hoa-gold/10 touch-target",
                       pathname.startsWith(item.href) && "text-hoa-gold bg-hoa-gold/10",
                     )}
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.name}
                   </Link>
-                  <div className="pl-4 space-y-1">
+                  <div className="pl-4 space-y-2 mb-2">
                     {item.subItems.map((subItem) => (
                       <Link
                         key={subItem.name}
                         href={subItem.href}
-                        className="block px-4 py-2 text-sm text-gray-600 dark:text-gray-300 hover:text-hoa-gold dark:hover:text-hoa-gold transition-colors duration-300"
+                        className="block px-4 py-2.5 text-sm text-gray-600 dark:text-gray-300 hover:text-hoa-gold dark:hover:text-hoa-gold transition-colors duration-300 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800/50 touch-target"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         {subItem.name}

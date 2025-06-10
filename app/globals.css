@@ -241,3 +241,60 @@ body {
     background-color: #ffd700;
   }
 }
+
+/* Responsive Utilities */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    word-break: break-word;
+  }
+
+  .sm-text-center {
+    text-align: center;
+  }
+
+  .sm-py-reduced {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .sm-space-y-reduced > * + * {
+    margin-top: 1rem;
+  }
+}
+
+/* Improved tap targets for mobile */
+@media (max-width: 768px) {
+  button,
+  a,
+  [role="button"],
+  input[type="button"],
+  input[type="submit"] {
+    padding: 0.5rem;
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 16px; /* Prevents iOS zoom on focus */
+  }
+}
+
+/* Prevent content from being hidden under fixed headers on anchor jumps */
+:target {
+  scroll-margin-top: 100px;
+}
