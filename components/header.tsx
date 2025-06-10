@@ -18,6 +18,7 @@ export default function Header() {
     {
       name: "About Us",
       href: "/about",
+      hasDropdown: true,
       subItems: [
         { name: "Our Story", href: "/about/our-story" },
         { name: "Corporate Governance", href: "/about/governance" },
@@ -29,44 +30,22 @@ export default function Header() {
     {
       name: "Careers",
       href: "/careers",
-      subItems: [
-        { name: "Open Positions", href: "/careers/positions" },
-        { name: "Application Process", href: "/careers/process" },
-        { name: "Life at Amaraa", href: "/careers/culture" },
-        { name: "Benefits", href: "/careers/benefits" },
-      ],
+      hasDropdown: false,
     },
     {
       name: "Subsidiaries",
       href: "/subsidiaries",
-      subItems: [
-        { name: "Agriculture", href: "/subsidiaries/agriculture" },
-        { name: "Security", href: "/subsidiaries/security" },
-        { name: "Aviation", href: "/subsidiaries/aviation" },
-        { name: "Automotive", href: "/subsidiaries/automotive" },
-        { name: "IT Services", href: "/subsidiaries/it" },
-        { name: "Food & Beverages", href: "/subsidiaries/food" },
-      ],
+      hasDropdown: false,
     },
     {
       name: "Contact Us",
       href: "/contact",
-      subItems: [
-        { name: "General Inquiries", href: "/contact/general" },
-        { name: "Media Relations", href: "/contact/media" },
-        { name: "Visit Us", href: "/contact/visit" },
-        { name: "Feedback", href: "/contact/feedback" },
-      ],
+      hasDropdown: false,
     },
     {
       name: "Privacy & Policy",
       href: "/privacy-policy",
-      subItems: [
-        { name: "Privacy Policy", href: "/privacy-policy#privacy" },
-        { name: "Corporate Governance", href: "/privacy-policy#governance" },
-        { name: "Terms of Service", href: "/privacy-policy#terms" },
-        { name: "Data Protection", href: "/privacy-policy#data" },
-      ],
+      hasDropdown: false,
     },
   ]
 
@@ -125,8 +104,8 @@ export default function Header() {
               <div
                 key={item.name}
                 className="relative"
-                onMouseEnter={() => handleMouseEnter(item.name)}
-                onMouseLeave={handleMouseLeave}
+                onMouseEnter={() => item.hasDropdown && handleMouseEnter(item.name)}
+                onMouseLeave={() => item.hasDropdown && handleMouseLeave()}
               >
                 <Link
                   href={item.href}
@@ -138,45 +117,49 @@ export default function Header() {
                   )}
                 >
                   {item.name}
-                  <ChevronDown
-                    className={cn(
-                      "ml-1 h-4 w-4 transition-transform duration-300 ease-in-out",
-                      activeDropdown === item.name && "rotate-180",
-                    )}
-                  />
+                  {item.hasDropdown && (
+                    <ChevronDown
+                      className={cn(
+                        "ml-1 h-4 w-4 transition-transform duration-300 ease-in-out",
+                        activeDropdown === item.name && "rotate-180",
+                      )}
+                    />
+                  )}
                 </Link>
 
-                {/* Dropdown Menu */}
-                <div
-                  className={cn(
-                    "absolute top-full left-0 mt-2 w-64 origin-top-left transition-all duration-300 ease-in-out",
-                    activeDropdown === item.name
-                      ? "opacity-100 scale-100 translate-y-0 pointer-events-auto"
-                      : "opacity-0 scale-95 -translate-y-2 pointer-events-none",
-                  )}
-                  onMouseEnter={handleDropdownMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <div className="bg-white/95 dark:bg-hoa-charcoal/95 backdrop-blur-xl rounded-xl shadow-2xl border border-white/20 dark:border-gray-700/50 overflow-hidden">
-                    <div className="py-2">
-                      {item.subItems.map((subItem, index) => (
-                        <Link
-                          key={subItem.name}
-                          href={subItem.href}
-                          className={cn(
-                            "block px-4 py-3 text-sm transition-all duration-200",
-                            "text-gray-700 dark:text-gray-200 hover:text-hoa-gold dark:hover:text-hoa-gold",
-                            "hover:bg-hoa-gold/10 dark:hover:bg-hoa-gold/10",
-                            "border-l-3 border-transparent hover:border-hoa-gold",
-                            index !== item.subItems.length - 1 && "border-b border-gray-100 dark:border-gray-700/50",
-                          )}
-                        >
-                          {subItem.name}
-                        </Link>
-                      ))}
+                {/* Dropdown Menu - Only for About Us */}
+                {item.hasDropdown && item.subItems && (
+                  <div
+                    className={cn(
+                      "absolute top-full left-0 mt-2 w-64 origin-top-left transition-all duration-300 ease-in-out",
+                      activeDropdown === item.name
+                        ? "opacity-100 scale-100 translate-y-0 pointer-events-auto"
+                        : "opacity-0 scale-95 -translate-y-2 pointer-events-none",
+                    )}
+                    onMouseEnter={handleDropdownMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <div className="bg-white/95 dark:bg-hoa-charcoal/95 backdrop-blur-xl rounded-xl shadow-2xl border border-white/20 dark:border-gray-700/50 overflow-hidden">
+                      <div className="py-2">
+                        {item.subItems.map((subItem, index) => (
+                          <Link
+                            key={subItem.name}
+                            href={subItem.href}
+                            className={cn(
+                              "block px-4 py-3 text-sm transition-all duration-200",
+                              "text-gray-700 dark:text-gray-200 hover:text-hoa-gold dark:hover:text-hoa-gold",
+                              "hover:bg-hoa-gold/10 dark:hover:bg-hoa-gold/10",
+                              "border-l-3 border-transparent hover:border-hoa-gold",
+                              index !== item.subItems.length - 1 && "border-b border-gray-100 dark:border-gray-700/50",
+                            )}
+                          >
+                            {subItem.name}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
               </div>
             ))}
           </nav>
@@ -220,18 +203,21 @@ export default function Header() {
                   >
                     {item.name}
                   </Link>
-                  <div className="pl-4 space-y-2 mb-2">
-                    {item.subItems.map((subItem) => (
-                      <Link
-                        key={subItem.name}
-                        href={subItem.href}
-                        className="block px-4 py-2.5 text-sm text-gray-600 dark:text-gray-300 hover:text-hoa-gold dark:hover:text-hoa-gold transition-colors duration-300 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800/50 touch-target"
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        {subItem.name}
-                      </Link>
-                    ))}
-                  </div>
+                  {/* Mobile submenu - Only for About Us */}
+                  {item.hasDropdown && item.subItems && (
+                    <div className="pl-4 space-y-2 mb-2">
+                      {item.subItems.map((subItem) => (
+                        <Link
+                          key={subItem.name}
+                          href={subItem.href}
+                          className="block px-4 py-2.5 text-sm text-gray-600 dark:text-gray-300 hover:text-hoa-gold dark:hover:text-hoa-gold transition-colors duration-300 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800/50 touch-target"
+                          onClick={() => setIsMenuOpen(false)}
+                        >
+                          {subItem.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ))}
             </nav>

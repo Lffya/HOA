@@ -35,14 +35,14 @@ export default function LeadershipSection() {
   ]
 
   return (
-    <section id="leadership" className="py-24 bg-gray-50">
+    <section id="leadership" className="py-24 bg-gray-50 dark:bg-hoa-charcoal/30 transition-colors duration-400">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold text-hoa-charcoal mb-8 font-serif">
+          <h2 className="text-5xl font-bold text-hoa-charcoal dark:text-white mb-8 font-serif">
             Leadership <span className="text-hoa-gold">Team</span>
           </h2>
           <div className="w-24 h-1 bg-hoa-gold mx-auto mb-8" />
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Our leadership team brings together decades of experience, visionary thinking, and unwavering commitment to
             excellence across diverse industries.
           </p>
@@ -50,7 +50,10 @@ export default function LeadershipSection() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {leaders.map((leader, index) => (
-            <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-0 bg-white">
+            <Card
+              key={index}
+              className="group hover:shadow-xl transition-all duration-300 border-0 bg-white dark:bg-hoa-charcoal/50"
+            >
               <CardContent className="p-8 text-center">
                 <div className="relative mb-6">
                   <img
@@ -59,7 +62,7 @@ export default function LeadershipSection() {
                     className="w-32 h-32 rounded-full mx-auto object-cover border-4 border-hoa-gold/20 group-hover:border-hoa-gold transition-colors duration-300"
                   />
                 </div>
-                <h3 className="text-2xl font-bold text-hoa-charcoal mb-2 font-serif">{leader.name}</h3>
+                <h3 className="text-2xl font-bold text-hoa-charcoal dark:text-white mb-2 font-serif">{leader.name}</h3>
                 <p className="text-hoa-gold font-semibold text-lg">{leader.title}</p>
               </CardContent>
             </Card>

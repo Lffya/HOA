@@ -35,14 +35,14 @@ export default function BusinessSection() {
   ]
 
   return (
-    <section id="businesses" className="py-24 bg-white">
+    <section id="businesses" className="py-24 bg-white dark:bg-hoa-charcoal transition-colors duration-400">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold text-hoa-charcoal mb-8 font-serif">
+          <h2 className="text-5xl font-bold text-hoa-charcoal dark:text-white mb-8 font-serif">
             Business <span className="text-hoa-gold">Verticals</span>
           </h2>
           <div className="w-24 h-1 bg-hoa-gold mx-auto mb-8" />
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Our diversified portfolio spans across 14 key industries, each contributing to our vision of sustainable
             growth and excellence.
           </p>
@@ -52,13 +52,15 @@ export default function BusinessSection() {
           {businesses.map((business, index) => (
             <Card
               key={index}
-              className="group hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-hoa-gold/30"
+              className="group hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:border-hoa-gold/30 dark:hover:border-hoa-gold/30 bg-white dark:bg-hoa-charcoal/50"
             >
               <CardContent className="p-6 text-center">
                 <div className="mb-4">
                   <business.icon className="w-12 h-12 mx-auto text-hoa-gold group-hover:scale-110 transition-transform duration-300" />
                 </div>
-                <h3 className="text-sm font-semibold text-hoa-charcoal leading-tight">{business.name}</h3>
+                <h3 className="text-sm font-semibold text-hoa-charcoal dark:text-white leading-tight">
+                  {business.name}
+                </h3>
               </CardContent>
             </Card>
           ))}

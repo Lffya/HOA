@@ -10,16 +10,15 @@ export default function PrivacyPolicyPage() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["governance", "privacy", "principles", "rights", "security", "contact"]
-      const scrollPosition = window.scrollY + 100
+      const sections = ["governance", "principles", "privacy", "rights", "security", "contact"]
+      const scrollPosition = window.scrollY + 150
 
-      for (const section of sections) {
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i]
         const element = document.getElementById(section)
         if (element) {
           const offsetTop = element.offsetTop
-          const offsetHeight = element.offsetHeight
-
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+          if (scrollPosition >= offsetTop) {
             setActiveSection(section)
             break
           }
@@ -28,13 +27,14 @@ export default function PrivacyPolicyPage() {
     }
 
     window.addEventListener("scroll", handleScroll)
+    handleScroll() // Set initial active section
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   const tableOfContents = [
     { id: "governance", title: "Corporate Governance", icon: Scale },
-    { id: "privacy", title: "Privacy Promise", icon: Shield },
     { id: "principles", title: "Guiding Principles", icon: Eye },
+    { id: "privacy", title: "Privacy Promise", icon: Shield },
     { id: "rights", title: "Your Rights", icon: Users },
     { id: "security", title: "Data Security", icon: Lock },
     { id: "contact", title: "Contact Information", icon: FileText },
