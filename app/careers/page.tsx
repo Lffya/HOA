@@ -3,249 +3,327 @@
 import { useState } from "react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import { ChevronDown, ChevronUp, Users, Target, Heart, Award } from "lucide-react"
-import { cn } from "@/lib/utils"
+import {
+  ChevronRight,
+  Users,
+  Heart,
+  MapPin,
+  Clock,
+  TrendingUp,
+  Lightbulb,
+  Globe,
+  Star,
+  CheckCircle,
+  ArrowRight,
+  Play,
+} from "lucide-react"
 
 export default function CareersPage() {
-  const [openFAQ, setOpenFAQ] = useState<number | null>(null)
+  const [activeTab, setActiveTab] = useState("culture")
 
-  const applicationSteps = [
+  const careerJourney = [
     {
-      step: 1,
-      title: "Discover Opportunities",
-      description: "Explore openings across divisions like Agriculture, Security, Aviation, Automotive, IT, and more.",
+      phase: "Discover",
+      title: "Find Your Calling",
+      description: "Explore opportunities that align with your passion and skills across our diverse portfolio.",
       icon: "🔍",
+      color: "from-blue-500 to-cyan-500",
     },
     {
-      step: 2,
-      title: "Prepare Your Application",
-      description:
-        "Customize your resume and cover letter to the role. Highlight your values and alignment with our mission.",
-      icon: "📝",
+      phase: "Connect",
+      title: "Join the Conversation",
+      description: "Engage with our talent team and learn about our culture, values, and growth opportunities.",
+      icon: "🤝",
+      color: "from-green-500 to-emerald-500",
     },
     {
-      step: 3,
-      title: "Submit Your Application",
-      description: "Apply via our online portal. Ensure details are accurate and up-to-date.",
-      icon: "📤",
+      phase: "Grow",
+      title: "Evolve with Purpose",
+      description: "Develop your skills, lead meaningful projects, and make a lasting impact on communities worldwide.",
+      icon: "🚀",
+      color: "from-purple-500 to-violet-500",
     },
     {
-      step: 4,
-      title: "The Interview Process",
-      description: "Engaging and value-based interviews with competency and situational questions.",
-      icon: "💬",
-    },
-    {
-      step: 5,
-      title: "Offer & Onboarding",
-      description: "Once selected, we guide you through onboarding to immerse you into our culture.",
-      icon: "🎉",
+      phase: "Lead",
+      title: "Shape the Future",
+      description: "Take on leadership roles and drive innovation that creates positive change across industries.",
+      icon: "👑",
+      color: "from-orange-500 to-red-500",
     },
   ]
 
-  const faqs = [
+  const lifeAtAmaraa = [
     {
-      question: "What types of jobs are available?",
-      answer:
-        "From agriculture to IT, we offer diverse opportunities across all our subsidiaries including Agriculture, Security, Aviation, Automotive, IT Services, Food & Beverages, and many more divisions.",
+      title: "Innovation Labs",
+      description: "Dedicated spaces for creative thinking and breakthrough solutions",
+      image: "/placeholder.svg?height=300&width=400",
+      stats: "50+ Projects Annually",
     },
     {
-      question: "Can I apply for multiple positions?",
-      answer:
-        "Yes, you can apply for multiple positions. We encourage you to tailor your application to each specific role to highlight relevant skills and experience.",
+      title: "Global Mobility",
+      description: "Work across 25+ countries and experience diverse cultures",
+      image: "/placeholder.svg?height=300&width=400",
+      stats: "25+ Countries",
     },
     {
-      question: "What is your diversity approach?",
-      answer:
-        "We promote an inclusive and innovative workplace where diverse perspectives are valued. We believe unique voices make us stronger and drive innovation across all our operations.",
+      title: "Learning Academy",
+      description: "Continuous learning with world-class training programs",
+      image: "/placeholder.svg?height=300&width=400",
+      stats: "200+ Courses",
     },
     {
-      question: "How can I stay updated on new opportunities?",
-      answer:
-        "Subscribe to our job alerts through our careers portal or follow us on social media platforms for the latest updates on new positions and company news.",
-    },
-    {
-      question: "What benefits do you offer?",
-      answer:
-        "We offer comprehensive benefits including health insurance, professional development opportunities, flexible working arrangements, and performance-based incentives.",
-    },
-    {
-      question: "What is the company culture like?",
-      answer:
-        "Our culture is built on the pillars of integrity, innovation, collaboration, and excellence. We foster an environment of continuous learning and mutual respect.",
+      title: "Wellness Centers",
+      description: "Comprehensive health and wellness facilities at every location",
+      image: "/placeholder.svg?height=300&width=400",
+      stats: "24/7 Support",
     },
   ]
 
-  const toggleFAQ = (index: number) => {
-    setOpenFAQ(openFAQ === index ? null : index)
-  }
+  const benefits = [
+    {
+      category: "Financial Wellness",
+      icon: TrendingUp,
+      items: [
+        "Competitive salary with performance bonuses",
+        "Stock options and profit sharing",
+        "Comprehensive insurance coverage",
+        "Retirement planning assistance",
+      ],
+    },
+    {
+      category: "Work-Life Balance",
+      icon: Heart,
+      items: [
+        "Flexible working arrangements",
+        "Unlimited PTO policy",
+        "Remote work opportunities",
+        "Family support programs",
+      ],
+    },
+    {
+      category: "Growth & Development",
+      icon: Lightbulb,
+      items: [
+        "Mentorship programs",
+        "Leadership development tracks",
+        "Conference and education funding",
+        "Cross-functional project opportunities",
+      ],
+    },
+    {
+      category: "Global Impact",
+      icon: Globe,
+      items: [
+        "International assignment opportunities",
+        "Community service time off",
+        "Sustainability project participation",
+        "Cultural exchange programs",
+      ],
+    },
+  ]
+
+  const testimonials = [
+    {
+      name: "Sarah Chen",
+      role: "Senior Data Scientist",
+      department: "Technology Division",
+      quote:
+        "At Amaraa, I'm not just analyzing data—I'm helping shape the future of sustainable agriculture. The impact we create here goes far beyond spreadsheets.",
+      image: "/placeholder-user.jpg",
+      tenure: "3 years",
+    },
+    {
+      name: "Marcus Rodriguez",
+      role: "Operations Manager",
+      department: "Aviation Division",
+      quote:
+        "The diversity of challenges keeps me engaged every day. From optimizing flight routes to implementing eco-friendly practices, no two days are the same.",
+      image: "/placeholder-user.jpg",
+      tenure: "5 years",
+    },
+    {
+      name: "Priya Patel",
+      role: "Sustainability Lead",
+      department: "Corporate Strategy",
+      quote:
+        "Working here means being part of something bigger. Every project contributes to our mission of creating a more sustainable and prosperous world.",
+      image: "/placeholder-user.jpg",
+      tenure: "2 years",
+    },
+  ]
+
+  const openRoles = [
+    {
+      title: "Senior Software Engineer",
+      department: "Technology",
+      location: "Mumbai, India",
+      type: "Full-time",
+      level: "Senior",
+      urgent: true,
+    },
+    {
+      title: "Sustainability Analyst",
+      department: "Environmental Solutions",
+      location: "Remote",
+      type: "Full-time",
+      level: "Mid-level",
+      urgent: false,
+    },
+    {
+      title: "Aviation Safety Inspector",
+      department: "Aviation",
+      location: "Dubai, UAE",
+      type: "Full-time",
+      level: "Senior",
+      urgent: true,
+    },
+    {
+      title: "Agricultural Research Scientist",
+      department: "Agriculture",
+      location: "Bangalore, India",
+      type: "Full-time",
+      level: "Senior",
+      urgent: false,
+    },
+    {
+      title: "Financial Analyst",
+      department: "Finance",
+      location: "London, UK",
+      type: "Full-time",
+      level: "Entry",
+      urgent: false,
+    },
+  ]
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
 
-      {/* Hero Section */}
-      <section className="relative pt-24 pb-16 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-hoa-gold/20 via-hoa-beige/30 to-white dark:from-hoa-gold/10 dark:via-hoa-charcoal/20 dark:to-hoa-charcoal"></div>
+      {/* Hero Section with Video Background Concept */}
+      <section className="relative pt-24 pb-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-hoa-charcoal/90 via-hoa-charcoal/70 to-hoa-gold/30 dark:from-hoa-charcoal/95 dark:via-hoa-charcoal/85 dark:to-hoa-gold/20"></div>
+        <div className="absolute inset-0 bg-[url('/placeholder.svg?height=800&width=1920')] bg-cover bg-center opacity-20"></div>
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center animate-fade-in-up">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-hoa-charcoal dark:text-white mb-6">
-              Careers at Amaraa Holding
-            </h1>
-            <p className="text-xl sm:text-2xl text-hoa-gold font-serif mb-8">Your Journey Begins Here</p>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
-              At Amaraa Holding, we believe that our people are our greatest asset. We are a family of passionate
-              professionals united by our mission: to create a sustainable and prosperous future.
-            </p>
-          </div>
-        </div>
-      </section>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="animate-fade-in-up">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif font-bold text-white mb-6">
+                Your Story
+                <br />
+                <span className="text-hoa-gold">Starts Here</span>
+              </h1>
+              <p className="text-xl text-white/90 mb-8 leading-relaxed">
+                Join a legacy where your ambitions meet purpose, where innovation drives impact, and where every career
+                becomes a chapter in our greater story of transformation.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button className="px-8 py-4 bg-hoa-gold hover:bg-hoa-gold/80 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2">
+                  <span>Explore Opportunities</span>
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+                <button className="px-8 py-4 border-2 border-white/30 text-white hover:bg-white/10 font-semibold rounded-lg transition-all duration-300 flex items-center justify-center space-x-2">
+                  <Play className="w-5 h-5" />
+                  <span>Watch Our Story</span>
+                </button>
+              </div>
+            </div>
 
-      {/* Why Join Us */}
-      <section className="py-16 bg-white dark:bg-hoa-charcoal/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 animate-fade-in-up">
-            <h2 className="text-3xl sm:text-4xl font-serif font-bold text-hoa-charcoal dark:text-white mb-6">
-              Why Choose Amaraa Holding?
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Join a legacy of excellence where your career becomes part of our greater story
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                icon: Users,
-                title: "Diverse Opportunities",
-                description: "Explore careers across 21+ subsidiaries spanning multiple industries and sectors.",
-                color: "from-blue-500 to-indigo-500",
-              },
-              {
-                icon: Target,
-                title: "Purpose-Driven Work",
-                description: "Contribute to meaningful projects that create positive impact in communities worldwide.",
-                color: "from-green-500 to-emerald-500",
-              },
-              {
-                icon: Heart,
-                title: "Inclusive Culture",
-                description: "Thrive in an environment that values diversity, innovation, and personal growth.",
-                color: "from-pink-500 to-rose-500",
-              },
-              {
-                icon: Award,
-                title: "Excellence Recognition",
-                description: "Be part of an award-winning organization that celebrates achievement and innovation.",
-                color: "from-yellow-500 to-orange-500",
-              },
-            ].map((benefit, index) => (
-              <div key={benefit.title} className={`animate-fade-in-up animation-delay-${(index + 1) * 200}`}>
-                <div className="bg-white dark:bg-hoa-charcoal/80 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 h-full hover:shadow-xl transition-all duration-300 text-center">
-                  <div
-                    className={`w-16 h-16 bg-gradient-to-br ${benefit.color} rounded-2xl flex items-center justify-center mx-auto mb-6`}
-                  >
-                    <benefit.icon className="w-8 h-8 text-white" />
+            <div className="animate-fade-in-up animation-delay-400">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-4">
+                  <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20">
+                    <div className="text-3xl font-bold text-hoa-gold mb-2">100K+</div>
+                    <div className="text-white/80">Global Team Members</div>
                   </div>
-                  <h3 className="text-xl font-serif font-bold text-hoa-charcoal dark:text-white mb-4">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{benefit.description}</p>
+                  <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20">
+                    <div className="text-3xl font-bold text-hoa-gold mb-2">25+</div>
+                    <div className="text-white/80">Countries</div>
+                  </div>
+                </div>
+                <div className="space-y-4 mt-8">
+                  <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20">
+                    <div className="text-3xl font-bold text-hoa-gold mb-2">21</div>
+                    <div className="text-white/80">Business Divisions</div>
+                  </div>
+                  <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20">
+                    <div className="text-3xl font-bold text-hoa-gold mb-2">95%</div>
+                    <div className="text-white/80">Employee Satisfaction</div>
+                  </div>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Application Process */}
-      <section className="py-16 bg-gradient-to-br from-hoa-beige/50 to-white dark:from-hoa-charcoal/30 dark:to-hoa-charcoal/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 animate-fade-in-up">
-            <h2 className="text-3xl sm:text-4xl font-serif font-bold text-hoa-charcoal dark:text-white mb-6">
-              Application Process
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Your journey to joining our family follows a thoughtful and comprehensive process
-            </p>
-          </div>
-
-          <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-hoa-gold/30 hidden lg:block"></div>
-
-            {/* Timeline Items */}
-            <div className="space-y-12">
-              {applicationSteps.map((step, index) => (
-                <div key={step.step} className={`relative animate-fade-in-up animation-delay-${(index + 1) * 200}`}>
-                  <div className={`lg:flex items-center ${index % 2 === 1 ? "lg:flex-row-reverse" : ""}`}>
-                    <div className="lg:w-1/2 lg:px-8">
-                      <div className="bg-white dark:bg-hoa-charcoal/80 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700">
-                        <div className="flex items-center mb-6">
-                          <div className="w-16 h-16 bg-hoa-gold rounded-full flex items-center justify-center text-2xl mr-6">
-                            {step.icon}
-                          </div>
-                          <div>
-                            <div className="text-sm text-hoa-gold font-semibold mb-1">Step {step.step}</div>
-                            <h3 className="text-xl font-serif font-bold text-hoa-charcoal dark:text-white">
-                              {step.title}
-                            </h3>
-                          </div>
-                        </div>
-                        <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{step.description}</p>
-                      </div>
-                    </div>
-                    <div className="hidden lg:block lg:w-1/2"></div>
-                  </div>
-
-                  {/* Timeline Dot */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-hoa-gold rounded-full border-4 border-white dark:border-hoa-charcoal hidden lg:block top-12"></div>
-                </div>
-              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* FAQs */}
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Career Journey */}
+      <section className="py-20 bg-white dark:bg-hoa-charcoal/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 animate-fade-in-up">
-            <h2 className="text-3xl sm:text-4xl font-serif font-bold text-hoa-charcoal dark:text-white mb-6">
-              Frequently Asked Questions
+            <h2 className="text-4xl sm:text-5xl font-serif font-bold text-hoa-charcoal dark:text-white mb-6">
+              Your Career Journey
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300">
-              Find answers to common questions about careers at Amaraa Holding
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Every great career is a journey of discovery, growth, and impact. Here's how your story unfolds with us.
             </p>
           </div>
 
-          <div className="space-y-4">
-            {faqs.map((faq, index) => (
-              <div
-                key={index}
-                className={`bg-white dark:bg-hoa-charcoal/80 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden animate-fade-in-up animation-delay-${
-                  (index + 1) * 100
-                }`}
-              >
-                <button
-                  onClick={() => toggleFAQ(index)}
-                  className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors duration-200"
-                >
-                  <h3 className="text-lg font-semibold text-hoa-charcoal dark:text-white pr-4">{faq.question}</h3>
-                  {openFAQ === index ? (
-                    <ChevronUp className="w-5 h-5 text-hoa-gold flex-shrink-0" />
-                  ) : (
-                    <ChevronDown className="w-5 h-5 text-hoa-gold flex-shrink-0" />
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {careerJourney.map((phase, index) => (
+              <div key={phase.phase} className={`animate-fade-in-up animation-delay-${(index + 1) * 200}`}>
+                <div className="relative">
+                  <div
+                    className={`bg-gradient-to-br ${phase.color} p-8 rounded-2xl text-white mb-6 hover:scale-105 transition-transform duration-300`}
+                  >
+                    <div className="text-4xl mb-4">{phase.icon}</div>
+                    <div className="text-sm font-semibold opacity-80 mb-2">{phase.phase}</div>
+                    <h3 className="text-xl font-serif font-bold mb-3">{phase.title}</h3>
+                    <p className="text-white/90 text-sm leading-relaxed">{phase.description}</p>
+                  </div>
+                  {index < careerJourney.length - 1 && (
+                    <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2">
+                      <ChevronRight className="w-8 h-8 text-hoa-gold" />
+                    </div>
                   )}
-                </button>
-                <div
-                  className={cn(
-                    "overflow-hidden transition-all duration-300 ease-in-out",
-                    openFAQ === index ? "max-h-96 opacity-100" : "max-h-0 opacity-0",
-                  )}
-                >
-                  <div className="px-8 pb-6">
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{faq.answer}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Life at Amaraa */}
+      <section className="py-20 bg-gradient-to-br from-hoa-beige/50 to-white dark:from-hoa-charcoal/30 dark:to-hoa-charcoal/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 animate-fade-in-up">
+            <h2 className="text-4xl sm:text-5xl font-serif font-bold text-hoa-charcoal dark:text-white mb-6">
+              Life at Amaraa
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Experience a workplace where innovation thrives, cultures blend, and every day brings new possibilities.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {lifeAtAmaraa.map((item, index) => (
+              <div key={item.title} className={`animate-fade-in-up animation-delay-${(index + 1) * 200}`}>
+                <div className="bg-white dark:bg-hoa-charcoal/80 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all duration-300 group">
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={item.image || "/placeholder.svg"}
+                      alt={item.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <div className="text-sm font-semibold bg-hoa-gold px-3 py-1 rounded-full">{item.stats}</div>
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-serif font-bold text-hoa-charcoal dark:text-white mb-3">
+                      {item.title}
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{item.description}</p>
                   </div>
                 </div>
               </div>
@@ -254,19 +332,172 @@ export default function CareersPage() {
         </div>
       </section>
 
+      {/* Employee Testimonials */}
+      <section className="py-20 bg-white dark:bg-hoa-charcoal/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 animate-fade-in-up">
+            <h2 className="text-4xl sm:text-5xl font-serif font-bold text-hoa-charcoal dark:text-white mb-6">
+              Voices from Our Family
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Hear from the passionate professionals who make Amaraa their home and drive our mission forward.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <div key={testimonial.name} className={`animate-fade-in-up animation-delay-${(index + 1) * 200}`}>
+                <div className="bg-white dark:bg-hoa-charcoal/80 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 h-full">
+                  <div className="flex items-center mb-6">
+                    <img
+                      src={testimonial.image || "/placeholder.svg"}
+                      alt={testimonial.name}
+                      className="w-16 h-16 rounded-full object-cover mr-4"
+                    />
+                    <div>
+                      <h3 className="text-lg font-bold text-hoa-charcoal dark:text-white">{testimonial.name}</h3>
+                      <p className="text-hoa-gold font-semibold">{testimonial.role}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">{testimonial.department}</p>
+                    </div>
+                  </div>
+                  <blockquote className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4 italic">
+                    "{testimonial.quote}"
+                  </blockquote>
+                  <div className="flex items-center justify-between">
+                    <div className="flex text-hoa-gold">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-current" />
+                      ))}
+                    </div>
+                    <span className="text-sm text-gray-500 dark:text-gray-400">{testimonial.tenure} at Amaraa</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits & Perks */}
+      <section className="py-20 bg-gradient-to-br from-hoa-beige/50 to-white dark:from-hoa-charcoal/30 dark:to-hoa-charcoal/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 animate-fade-in-up">
+            <h2 className="text-4xl sm:text-5xl font-serif font-bold text-hoa-charcoal dark:text-white mb-6">
+              Beyond the Paycheck
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              We believe in investing in our people with comprehensive benefits that support your entire life journey.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {benefits.map((benefit, index) => (
+              <div key={benefit.category} className={`animate-fade-in-up animation-delay-${(index + 1) * 200}`}>
+                <div className="bg-white dark:bg-hoa-charcoal/80 p-6 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 h-full">
+                  <div className="w-12 h-12 bg-hoa-gold rounded-full flex items-center justify-center mb-6">
+                    <benefit.icon className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-serif font-bold text-hoa-charcoal dark:text-white mb-4">
+                    {benefit.category}
+                  </h3>
+                  <ul className="space-y-3">
+                    {benefit.items.map((item, idx) => (
+                      <li key={idx} className="flex items-start space-x-2 text-gray-600 dark:text-gray-300">
+                        <CheckCircle className="w-4 h-4 text-hoa-gold mt-1 flex-shrink-0" />
+                        <span className="text-sm">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Open Positions */}
+      <section className="py-20 bg-white dark:bg-hoa-charcoal/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 animate-fade-in-up">
+            <h2 className="text-4xl sm:text-5xl font-serif font-bold text-hoa-charcoal dark:text-white mb-6">
+              Current Opportunities
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Ready to make your mark? Explore our current openings and find the perfect role to start your journey.
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            {openRoles.map((role, index) => (
+              <div key={role.title} className={`animate-fade-in-up animation-delay-${(index + 1) * 100}`}>
+                <div className="bg-white dark:bg-hoa-charcoal/80 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 group">
+                  <div className="flex items-center justify-between">
+                    <div className="flex-1">
+                      <div className="flex items-center space-x-4 mb-2">
+                        <h3 className="text-xl font-bold text-hoa-charcoal dark:text-white group-hover:text-hoa-gold transition-colors">
+                          {role.title}
+                        </h3>
+                        {role.urgent && (
+                          <span className="px-3 py-1 bg-red-100 text-red-800 text-xs font-semibold rounded-full">
+                            Urgent
+                          </span>
+                        )}
+                      </div>
+                      <div className="flex items-center space-x-6 text-gray-600 dark:text-gray-300">
+                        <span className="flex items-center space-x-1">
+                          <Users className="w-4 h-4" />
+                          <span>{role.department}</span>
+                        </span>
+                        <span className="flex items-center space-x-1">
+                          <MapPin className="w-4 h-4" />
+                          <span>{role.location}</span>
+                        </span>
+                        <span className="flex items-center space-x-1">
+                          <Clock className="w-4 h-4" />
+                          <span>{role.type}</span>
+                        </span>
+                        <span className="px-2 py-1 bg-hoa-gold/10 text-hoa-gold text-xs font-semibold rounded">
+                          {role.level}
+                        </span>
+                      </div>
+                    </div>
+                    <button className="px-6 py-3 bg-hoa-gold hover:bg-hoa-gold/80 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 flex items-center space-x-2">
+                      <span>Apply Now</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <button className="px-8 py-4 border-2 border-hoa-gold text-hoa-gold hover:bg-hoa-gold hover:text-white font-semibold rounded-lg transition-all duration-300">
+              View All Positions
+            </button>
+          </div>
+        </div>
+      </section>
+
       {/* Call to Action */}
-      <section className="py-16 bg-gradient-to-br from-hoa-gold/10 to-hoa-beige/20 dark:from-hoa-gold/5 dark:to-hoa-charcoal/10">
+      <section className="py-20 bg-gradient-to-br from-hoa-gold/10 to-hoa-beige/20 dark:from-hoa-gold/5 dark:to-hoa-charcoal/10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="animate-fade-in-up">
-            <h2 className="text-3xl sm:text-4xl font-serif font-bold text-hoa-charcoal dark:text-white mb-6">
-              Ready to Begin Your Journey?
+            <h2 className="text-4xl sm:text-5xl font-serif font-bold text-hoa-charcoal dark:text-white mb-6">
+              Ready to Write Your Chapter?
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-              Join our family of passionate professionals and become part of a legacy that's shaping the future.
+              Your story of impact, growth, and purpose begins with a single step. Join us in creating a legacy that
+              transcends generations.
             </p>
-            <button className="px-12 py-4 bg-hoa-gold hover:bg-hoa-gold/80 text-white font-semibold text-lg rounded-lg transition-all duration-300 hover:scale-105 shadow-lg">
-              Join Us
-            </button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="px-12 py-4 bg-hoa-gold hover:bg-hoa-gold/80 text-white font-semibold text-lg rounded-lg transition-all duration-300 hover:scale-105 shadow-lg">
+                Start Your Journey
+              </button>
+              <button className="px-12 py-4 border-2 border-hoa-gold text-hoa-gold hover:bg-hoa-gold hover:text-white font-semibold text-lg rounded-lg transition-all duration-300">
+                Learn More About Us
+              </button>
+            </div>
           </div>
         </div>
       </section>
