@@ -298,3 +298,24 @@ body {
 :target {
   scroll-margin-top: 100px;
 }
+
+/* Brand Colors */
+.text-hoa-rose {
+  color: #d1accd;
+}
+
+.bg-hoa-rose {
+  background-color: #d1accd;
+}
+
+.border-hoa-rose {
+  border-color: #d1accd;
+}
+
+.hover\:text-hoa-rose:hover {
+  color: #d1accd;
+}
+
+.hover\:bg-hoa-rose:hover {
+  background-color: #d1accd;
+}

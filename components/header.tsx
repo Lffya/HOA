@@ -27,40 +27,45 @@ export default function Header() {
       ],
     },
     {
-      name: "Businesses",
-      href: "/businesses",
+      name: "Careers",
+      href: "/careers",
       subItems: [
-        { name: "Real Estate", href: "/businesses/real-estate" },
-        { name: "Manufacturing", href: "/businesses/manufacturing" },
-        { name: "Technology", href: "/businesses/technology" },
-        { name: "Investment", href: "/businesses/investment" },
+        { name: "Open Positions", href: "/careers/positions" },
+        { name: "Application Process", href: "/careers/process" },
+        { name: "Life at Amaraa", href: "/careers/culture" },
+        { name: "Benefits", href: "/careers/benefits" },
       ],
     },
     {
-      name: "Innovation",
-      href: "/innovation",
+      name: "Subsidiaries",
+      href: "/subsidiaries",
       subItems: [
-        { name: "Research & Development", href: "/innovation/research" },
-        { name: "Digital Transformation", href: "/innovation/digital" },
-        { name: "Sustainability", href: "/innovation/sustainability" },
+        { name: "Agriculture", href: "/subsidiaries/agriculture" },
+        { name: "Security", href: "/subsidiaries/security" },
+        { name: "Aviation", href: "/subsidiaries/aviation" },
+        { name: "Automotive", href: "/subsidiaries/automotive" },
+        { name: "IT Services", href: "/subsidiaries/it" },
+        { name: "Food & Beverages", href: "/subsidiaries/food" },
       ],
     },
     {
-      name: "Investors",
-      href: "/investors",
-      subItems: [
-        { name: "Financial Reports", href: "/investors/reports" },
-        { name: "Investor Relations", href: "/investors/relations" },
-        { name: "Corporate News", href: "/investors/news" },
-      ],
-    },
-    {
-      name: "Contact",
+      name: "Contact Us",
       href: "/contact",
       subItems: [
-        { name: "Get in Touch", href: "/contact/get-in-touch" },
-        { name: "Locations", href: "/contact/locations" },
-        { name: "Careers", href: "/contact/careers" },
+        { name: "General Inquiries", href: "/contact/general" },
+        { name: "Media Relations", href: "/contact/media" },
+        { name: "Visit Us", href: "/contact/visit" },
+        { name: "Feedback", href: "/contact/feedback" },
+      ],
+    },
+    {
+      name: "Privacy & Policy",
+      href: "/privacy-policy",
+      subItems: [
+        { name: "Privacy Policy", href: "/privacy-policy#privacy" },
+        { name: "Corporate Governance", href: "/privacy-policy#governance" },
+        { name: "Terms of Service", href: "/privacy-policy#terms" },
+        { name: "Data Protection", href: "/privacy-policy#data" },
       ],
     },
   ]
@@ -126,7 +131,7 @@ export default function Header() {
                 <Link
                   href={item.href}
                   className={cn(
-                    "flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ease-in-out",
+                    "flex items-center px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 ease-in-out",
                     "text-hoa-charcoal dark:text-white hover:text-hoa-gold dark:hover:text-hoa-gold",
                     "hover:bg-hoa-gold/10 dark:hover:bg-hoa-gold/10",
                     pathname.startsWith(item.href) && "text-hoa-gold bg-hoa-gold/10",

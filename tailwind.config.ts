@@ -23,6 +23,7 @@ const config: Config = {
         "hoa-gold": "#c6a35d",
         "hoa-charcoal": "#232323",
         "hoa-beige": "#f0efe2",
+        "hoa-rose": "#d1accd",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
